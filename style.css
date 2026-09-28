@@ -1,4 +1,4 @@
-/* Provided CSS */
+/* Base Styles */
 body {
   margin: 0;
   min-height: 100vh;
@@ -7,6 +7,7 @@ body {
   align-items: flex-start;
   background: radial-gradient(circle at center, #f5f5f7, #e2e2e8);
   font-family: system-ui, -apple-system, sans-serif;
+  color: #333;
 }
 
 .app-container {
@@ -21,19 +22,53 @@ body {
 
 header {
   text-align: center;
+  width: 100%;
 }
 
 header h1 {
   font-size: 3rem;
-  color: #333;
   margin-bottom: 0.5rem;
 }
 
 header p {
   color: #666;
   font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
+/* Controls Section */
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.glass-input, .glass-select {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.glass-input {
+  flex: 1;
+  max-width: 300px;
+}
+
+.glass-select {
+  cursor: pointer;
+}
+
+/* Provided Component Styles */
 .container {
   display: flex;
   flex-direction: column;
@@ -49,7 +84,6 @@ header p {
   filter: contrast(3);
 }
 
-/* General button box */
 .box {
   --w: 100px;
   --h: 100px;
@@ -87,7 +121,7 @@ header p {
 }
 
 .box .text {
-  filter: drop-shadow(0 25px 3px rgba(102, 102, 102, 0.15));
+  filter: drop-shadow(0 25px 3px rgba(102, 102, 0.15));
 }
 
 .box:before {
@@ -196,7 +230,7 @@ header p {
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdropfilter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   text-align: center;
@@ -268,5 +302,14 @@ header p {
   .start-btn .btn-icon {
     width: 30px;
     height: 30px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .glass-input, .glass-select {
+    max-width: 100%;
   }
 }

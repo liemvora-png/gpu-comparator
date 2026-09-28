@@ -12,11 +12,20 @@
             <h1>GPU Comparator</h1>
             <p>Compare the latest from NVIDIA, AMD, and Intel</p>
             
-            <!-- Provided Component -->
+            <div class="controls">
+                <input type="text" id="search-input" placeholder="Search GPU name or brand..." class="glass-input">
+                <select id="vendor-filter" class="glass-select">
+                    <option value="all">All Vendors</option>
+                    <option value="nvidia">NVIDIA</option>
+                    <option value="amd">AMD</option>
+                    <option value="intel">Intel</option>
+                </select>
+            </div>
+
             <div class="container fx-layer">
                 <div class="top">
                     <div class="box start-btn" style="--w: 260px; --h: 75px; --tr: 15%;">
-                        <span class="text">Compare Now</span>
+                        <span class="text">Scroll to Compare</span>
                         <div class="btn-icon">
                             <svg
                                 class="svg"
