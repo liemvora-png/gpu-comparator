@@ -31,17 +31,21 @@ function renderCards(data) {
         
         let specsHtml = '';
         for (const [key, value] of Object.entries(gpu.specs)) {
-            specsHtml += `<li><span>${key}</span><span>${value}</span></li>`;
+            specsHtml += `<div class="spec-item"><span class="spec-label">${key}</span><span class="spec-value">${value}</span></div>`;
         }
 
         card.innerHTML = `
-            <span class="brand">${gpu.brand}</span>
-            <h2>${gpu.name}</h2>
-            <ul class="specs">
+            <div class="card-header">
+                <span class="brand-tag">${gpu.brand}</span>
+                <h2 class="gpu-name">${gpu.name}</h2>
+            </div>
+            <div class="card-body">
                 ${specsHtml}
-            </ul>
-            <div class="price">${gpu.price}</div>
-            ${gpu.url !== '#' ? `<a href="${gpu.url}" target="_blank" class="details-link">View Details</a>` : ''}
+            </div>
+            <div class="card-footer">
+                <div class="price">${gpu.price}</div>
+                ${gpu.url !== '#' ? `<a href="${gpu.url}" target="_blank" class="details-link" style="color: var(--white); text-decoration: none; font-size: 0.9rem;">View Details</a>` : ''}
+            </div>
         `;
         
         container.appendChild(card);
