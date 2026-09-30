@@ -1,109 +1,117 @@
-/* Animated Background */
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+:root {
+    --white: #fdffffff;
+    --ruby-red: #b10f2eff;
+    --black-cherry: #570000ff;
+    --rich-mahogany: #280000ff;
+    --burnt-peach: #de7c5aff;
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    --primary-color: var(--ruby-red);
 }
 
-/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: radial-gradient(circle at center, #f5f5f7, #e2e2e8);
-  background-size: 200% 200%;
-  animation: backgroundMove 15s ease infinite;
-  font-family: system-ui, -apple-system, sans-serif;
-  color: #333;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at center, var(--white), var(--black-cherry));
+    color: var(--white);
+    overflow-x: hidden;
 }
 
-.app-container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
+/* Animated Background for the app wrapper */
+.app-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--white), var(--ruby-red), var(--black-cherry));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
 
-header {
-  text-align: center;
-  width: 100%;
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-header h1 {
-  font-size: 3.5rem;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(45deg, #333, #666);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;
+/* Header and Controls */
+.glass-header {
+    padding: 3rem 1rem;
+    text-align: center;
+    z-index: 10;
 }
 
-header p {
-  color: #666;
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
 
-/* Controls Section */
-.controls {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
+.title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 0;
+    color: var(--white);
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--burnt-peach);
+    margin-bottom: 1rem;
+}
+
+.controls-container {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-wrapper, .filter-wrapper {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Liquid Glass Inputs */
 .glass-input, .glass-select {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdropfilter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  color: #333;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  outline: none;
-  transition: all 0.3s ease;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
 .glass-input:focus, .glass-select:focus {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-.glass-input {
-  flex: 1;
-  max-width: 350px;
-}
-
-.glass-select {
-  cursor: pointer;
-  min-width: 180px;
-}
-
-/* Provided Component Styles */
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
+/* User's Provided Component (Button) */
+.fx-layer {
+    filter: contrast(3);
 }
 
 .container .top {
-  display: flex;
-  gap: 5rem;
-}
-
-.fx-layer {
-  filter: contrast(3);
+    display: flex;
+    gap: 5rem;
 }
 
 .box {
@@ -131,7 +139,7 @@ header p {
 
   background: rgba(0, 0, 0, 0.02);
   backdrop-filter: blur(2px);
-  -webkit-backdropfilter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   cursor: pointer;
   filter: brightness(0.9);
   user-select: none;
@@ -191,13 +199,13 @@ header p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 0.25s;
 }
 
 .start-btn .text {
   font-size: 25px;
   font-family: system-ui, -apple-system, sans-serif;
-  color: #3e3e3e;
+  color: var(--white);
 }
 
 .start-btn .btn-icon {
@@ -206,25 +214,24 @@ header p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #3e3e3e;
+  background: var(--ruby-red);
   border-radius: 50%;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 0.25s;
 }
 
 .start-btn .btn-icon .svg {
   width: 16px;
-  fill: #f5f5f5;
+  fill: var(--white);
 }
 
 .start-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0);
   transform: translateY(-3px);
 }
 
 .start-btn:hover .btn-icon {
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .start-btn:active {
@@ -239,141 +246,139 @@ header p {
   transform: scale(0.94);
 }
 
-/* GPU Comparison Section Styling */
-#comparison-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  margin-top: 2rem;
+/* Main Content Area */
+.content-area {
+    flex: 1;
+    padding: 2rem 1rem 5rem;
 }
 
+.gpu-section {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gpu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem;
+}
+
+/* GPU Cards (Glassmorphism) */
 .gpu-card {
-  padding: 2.5rem 2rem;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(20px);
-  -webkit-backdropfilter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.1);
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-}
-
-.gpu-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
-  pointer-events: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gpu-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 20px 50px rgba(31, 38, 135, 0.2);
-  border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.3);
 }
 
-.gpu-card h2 {
-  margin-top: 0.5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #222;
+.card-header {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.gpu-card .brand {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 0.5rem;
-  color: #666;
-  display: block;
+.brand-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--burnt-peach);
 }
 
-.gpu-card .specs {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-  text-align: left;
+.gpu-name {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.4rem;
+    color: var(--white);
 }
 
-.gpu-card .specs li {
-  padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
+.card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
 }
 
-.gpu-card .specs li:last-child {
-  border-bottom: none;
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
 }
 
-.gpu-card .specs li span:first-child {
-  color: #888;
+.spec-label {
+    color: var(--burnt-peach);
+    font-weight: 500;
 }
 
-.gpu-card .specs li span:last-child {
-  font-weight: 600;
-  color: #333;
+.spec-value {
+    color: var(--white);
+    font-weight: 600;
 }
 
-.gpu-card .price {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #000;
-  margin-bottom: 1rem;
+.card-footer {
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: right;
 }
 
-.gpu-card .details-link {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--burnt-peach);
 }
 
-.gpu-card .details-link:hover {
-  background: rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
+.no-results, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.5rem;
+    color: var(--burnt-peach);
 }
 
-/* Responsive adjustments */
+/* Footer */
+.glass-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-  
-  .container .top {
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-  }
+    .controls-container {
+        flex-direction: column;
+    }
+    
+    .gpu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
 
-  .start-btn {
-    width: 220px;
-    height: 65px;
-  }
+    .title {
+        font-size: 2.5rem;
+    }
 
-  .start-btn .text {
-    font-size: 20px;
-  }
+    .container .top {
+        gap: 2rem;
+    }
+}
 
-  .controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .glass-input, .glass-select {
-    max-width: 100%;
-  }
+@media (max-width: 480px) {
+    .start-btn .text {
+        font-size: 18px;
+    }
+    
+    .start-btn .btn-icon {
+        width: 30px;
+        height: 30px;
+    }
 }
