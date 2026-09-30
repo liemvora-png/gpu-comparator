@@ -8,44 +8,54 @@
 </head>
 <body>
     <div class="app-container">
-        <header>
-            <h1>GPU Comparator</h1>
-            <p>Compare the latest from NVIDIA, AMD, and Intel</p>
-            
-            <div class="controls">
-                <input type="text" id="search-input" placeholder="Search GPU name or brand..." class="glass-input">
-                <select id="vendor-filter" class="glass-select">
-                    <option value="all">All Vendors</option>
-                    <option value="nvidia">NVIDIA</option>
-                    <option value="amd">AMD</option>
-                    <option value="intel">Intel</option>
-                </select>
-            </div>
+        <header class="glass-header">
+            <div class="header-content">
+                <h1 class="title">GPU Comparator</h1>
+                <p class="subtitle">Compare the latest from NVIDIA, AMD, and Intel</p>
+                
+                <div class="controls-container">
+                    <div class="search-wrapper">
+                        <input type="text" id="search-input" placeholder="Search GPU name or brand..." class="glass-input">
+                    </div>
+                    <div class="filter-wrapper">
+                        <select id="vendor-filter" class="glass-select">
+                            <option value="all">All Vendors</option>
+                            <option value="nvidia">NVIDIA</option>
+                            <option value="amd">AMD</option>
+                            <option value="intel">Intel</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div class="container fx-layer">
-                <div class="top">
-                    <div class="box start-btn" style="--w: 260px; --h: 75px; --tr: 15%;">
-                        <span class="text">Scroll to Compare</span>
-                        <div class="btn-icon">
-                            <svg
-                                class="svg"
-                                viewBox="0 0 1024 1024"
-                                version="1.1"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M779.180132 473.232045 322.354755 16.406668c-21.413706-21.413706-56.121182-21.413706-77.534887 0-21.413706 21.413706-21.413706 56.122205 0 77.534887l418.057421 418.057421L244.819868 930.057421c-21.413706 21.413706-21.413706 56.122205 0 77.534887 10.706853 10.706853 24.759917 16.059767 38.767955 16.059767s28.061103-5.353938 38.767955-16.059767L779.180132 550.767955C800.593837 529.35425 800.593837 494.64575 779.180132 473.232045z"
-                                ></path>
-                            </svg>
+                <div class="container fx-layer">
+                    <div class="top">
+                        <div class="box start-btn" style="--w: 260px; --h: 75px; --tr: 15%;">
+                            <span class="text">Scroll to Compare</span>
+                            <div class="btn-icon">
+                                <svg
+                                    class="svg"
+                                    viewBox="0 0 1024 1024"
+                                    version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M779.180132 473.232045 322.354755 16.406668c-21.413706-21.413706-56.121182-21.413706-77.534887 0-21.413706 21.413706-21.413706 56.122205 0 77.534887l418.057421 418.057421L244.819868 930.057421c-21.413706 21.413706-21.413706 56.122205 0 77.534887 10.706853 10.706853 24.759917 16.059767 38.767955 16.059767s28.061103-5.353938 38.767955-16.059767L779.180132 550.767955C800.593837 529.35425 800.593837 494.64575 779.180132 473.232045z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="circle-overlay"></div>
                         </div>
-                        <div class="circle-overlay"></div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <main id="comparison-section">
-            <!-- GPU Cards will be injected here -->
+        <main class="content-area">
+            <div class="gpu-section">
+                <div id="comparison-section" class="gpu-grid">
+                    <!-- GPU Cards will be injected here -->
+                </div>
+            </div>
         </main>
     </div>
     <script src="script.js"></script>
