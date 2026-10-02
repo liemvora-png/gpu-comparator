@@ -1,0 +1,373 @@
+:root {
+  --eggshell: #f4f1deff;
+  --burnt-peach: #e07a5fff;
+  --twilight-indigo: #3d405bff;
+  --muted-teal: #81b29aff;
+  --apricot-cream: #f2cc8fff;
+  
+  /* Glassmorphism variables */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  --text-color: var(--twilight-indigo);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top left, var(--eggshell), var(--apricot-cream), var(--twilight-indigo));
+  background-attachment: fixed;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/* Animated Background for the app wrapper */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Glassmorphism Base */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Header Section */
+.glass-header {
+  padding: 4rem 1rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 800;
+  background: linear-gradient(to right, var(--twilight-indigo), var(--burnt-peach));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--twilight-indigo);
+  opacity: 0.8;
+  max-width: 600px;
+}
+
+/* Controls Container */
+.controls-container {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.search-wrapper, .filter-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.glass-input, .glass-select {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--twilight-indigo);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus, .glass-select:focus {
+  border-color: var(--burnt-peach);
+  box-shadow: 0 0 15px rgba(224, 122, 95, 0.3);
+}
+
+/* The Start Button Component (User's provided CSS) */
+.container.fx-layer {
+  filter: contrast(3);
+}
+
+.container .top {
+  display: flex;
+  gap: 5rem;
+}
+
+.container .bottom {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.box {
+  --w: 100px;
+  --h: 100px;
+  --r: 9999px;
+  --tr: 25%;
+  z-index: 500;
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--r);
+  border: 1px double rgba(51, 51, 51, 0.08);
+
+  box-shadow:
+    inset 2px -2px 1px -1px rgba(255, 255, 255, 0.9),
+    inset -2px 2px 1px -1px rgba(255, 255, 255, 0.9),
+    inset 6px -6px 1px -6px rgba(255, 255, 255, 0.55),
+    inset -6px 6px 1px -6px rgba(255, 255, 255, 0.55),
+    inset 0 0 2px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+
+  background: rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: pointer;
+  filter: brightness(0.9);
+  user-select: none;
+}
+
+.box .svg {
+  width: 28px;
+  filter: drop-shadow(0 25px 3px rgba(102, 102, 102, 0.2));
+}
+
+.box .text {
+  filter: drop-shadow(0 25px 3px rgba(102, 102, 102, 0.15));
+}
+
+.box:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--w) - 16px);
+  height: calc(var(--h) - 16px);
+  border-radius: var(--r);
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  filter: blur(8px);
+}
+
+.box:after {
+  z-index: 501;
+  content: "";
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  border-radius: var(--r);
+  filter: blur(7px);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent var(--tr),
+    transparent calc(100% - var(--tr)),
+    rgba(255, 255, 255, 0.8) 100%
+  );
+}
+
+.box .circle-overlay {
+  position: absolute;
+  width: calc(var(--w) - 9px);
+  height: calc(var(--h) - 9px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r);
+  filter: blur(1px);
+}
+
+.start-btn {
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: 0.25s;
+}
+
+.start-btn .text {
+  font-size: 25px;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--twilight-indigo);
+}
+
+.start-btn .btn-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--twilight-indigo);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  transition: 0.25s;
+}
+
+.start-btn .btn-icon .svg {
+  width: 16px;
+  fill: #f5f5f5;
+}
+
+.start-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-3px);
+}
+
+.start-btn:hover .btn-icon {
+  transform: scale(1.1);
+}
+
+.start-btn:active {
+  transform: scale(0.94);
+}
+
+.start-btn:active .text {
+  color: #000;
+}
+
+.start-btn:active .btn-icon {
+  transform: scale(0.94);
+}
+
+/* GPU Grid and Cards */
+.content-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.gpu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.gpu-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+}
+
+.gpu-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.brand-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--burnt-peach);
+  letter-spacing: 0.1em;
+}
+
+.gpu-name {
+  font-size: 1.5rem;
+  margin: 0.25rem 0;
+  color: var(--twilight-indigo);
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.spec-label {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.spec-value {
+  font-weight: 500;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--muted-teal);
+}
+
+/* Footer */
+.glass-footer {
+  margin-top: auto;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .controls-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper, .filter-wrapper {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .gpu-grid {
+    grid-template-columns: 1fr;
+  }
+}
